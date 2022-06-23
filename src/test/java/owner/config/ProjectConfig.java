@@ -3,17 +3,15 @@ package owner.config;
 import org.aeonbits.owner.Config;
 
 //@Config.LoadPolicy(Config.LoadType.MERGE)
-//@Config.Sources({
-//        "system:properties",
-//        "classpath:config/local.properties",
-//        "classpath:config/remote.properties"
-//})
-@Config.Sources("classpath:config/${config}.properties")
+
+@Config.Sources({
+        "classpath:${device}.properties"
+})
 
 public interface ProjectConfig extends Config {
 
     @Key("baseUrl")
-//    @DefaultValue("https://github.com")
+    @DefaultValue("https://github.com")
     String getBaseUrl();
 
     @Key("browser")
@@ -23,12 +21,9 @@ public interface ProjectConfig extends Config {
     // зачитываем данные из командной строки
     @Key("remoteUrl")
     // обрабатывает дефолтное значение
-//    @DefaultValue("https://user1:1234@selenoid.autotests.cloud/wd/hub/")
+    @DefaultValue("https://user1:1234@selenoid.autotests.cloud/wd/hub/")
     // конвертируем в возращаемый тип
     String getRemoteUrl();
-
-    // @Key("remoteWebDriver")
-    // String getRemoteWebDriver();
 
     @Key("browserSize")
     @DefaultValue("100")
